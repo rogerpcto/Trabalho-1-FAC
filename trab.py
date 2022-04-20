@@ -1,6 +1,8 @@
+import sys
+
 #Funcao para ler os numeros do arquivo
-def abrir_arquivo():
-    file = open('entrada.txt', "r")
+def abrir_arquivo(nome_arquivo):
+    file = open(nome_arquivo, "r")
     lista = file.readlines()
     file.close()
     return lista
@@ -119,7 +121,12 @@ def adicao_c2(numero1, numero2):
     soma = adicao_bin('0' + numero1, '0' + numero2)
     return soma[::-1]
 
-lista = abrir_arquivo()
+try:
+    lista = abrir_arquivo(sys.argv[1])
+except:
+    print("Erro ao abrir o arquivo")
+    sys.exit()
+
 atual = 0
 while atual+1 <= len(lista):
     numero1, numero2 = lista[atual].strip('\n'), lista[atual+1].strip('\n')
