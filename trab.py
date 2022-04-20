@@ -2,9 +2,9 @@ import sys
 
 #Funcao para ler os numeros do arquivo
 def abrir_arquivo(nome_arquivo):
-    file = open(nome_arquivo, "r")
-    lista = file.readlines()
-    file.close()
+    arquivo = open(nome_arquivo, "r")
+    lista = arquivo.readlines()
+    arquivo.close()
     return lista
 
 #Funcao para transformar a base binara em decimal
@@ -76,7 +76,7 @@ def subtracao_sm(numero1, numero2):
     soma  = ""
     temp = '0'
     emprestado = 0
-    for i in range((len(numero1)-1)-1,0,-1):
+    for i in range((len(numero1)-1),0,-1):
         if emprestado == 1:
             temp = '0'
             if numero1[i] == '1':
