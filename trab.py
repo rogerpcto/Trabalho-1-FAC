@@ -10,13 +10,13 @@ def abrir_arquivo(nome_arquivo):
 #Funcao para transformar a base binara em decimal
 def binario_para_decimal(numero):
     decimal = 0
-    p = 0
+    expoente = 0
     for digito in reversed(numero):
         if int(digito) == 0:
             decimal += 0
         elif int(digito) == 1:
-            decimal+= 2**p
-        p+= 1
+            decimal += 2**expoente
+        expoente += 1
     return decimal
 
 #Funcao para transformar a base binaria em sinal e magnitude em base decimal
@@ -27,34 +27,31 @@ def sm_para_decimal(numero):
     return decimal
 
 #Funcao para descobrir qual a maior magnitude entre dois numeros em SM
-def maior_magnitude_sm(numero1,numero2):
-    atual=1
+def maior_magnitude_sm(numero1, numero2):
+    atual = 1
     while(numero1[atual] == numero2[atual]):
-        atual +=1
-    if numero1[atual-1] == "1":
+        atual += 1
+    if numero1[atual - 1] == "1":
         return True
     else:
         return False
 
 #Funcao para somar os numeros na base binaria com sinal de magnitude
-def adicao_sm(numero1,numero2):
+def adicao_sm(numero1, numero2):
     if(numero1[0] == numero2[0]):
-        soma = adicao_bin(numero1,numero2)
-        soma = numero1[0] + soma
+        soma = numero1[0] + adicao_bin(numero1, numero2)
     else:
         if maior_magnitude_sm(numero1, numero2):
-            soma = subtracao_sm(numero1, numero2)
-            soma = numero1[0] + soma
+            soma = numero1[0] + subtracao_sm(numero1, numero2)
         else:
-            soma = subtracao_sm(numero2, numero1)
-            soma = numero2[0] + soma
+            soma = numero2[0] + subtracao_sm(numero2, numero1)
     return soma
 
 #Funcao para somar os numeros na base binaria
 def adicao_bin(numero1, numero2): 
-    soma  = ""
+    soma = ""
     temp = 0
-    for i in range((len(numero1)-1),0,-1):
+    for i in range((len(numero1)-1), 0, -1):
         if numero1[i] == numero2[i]:
             if temp == 1:
                 soma += "1"
@@ -76,7 +73,7 @@ def subtracao_sm(numero1, numero2):
     soma  = ""
     temp = '0'
     emprestado = 0
-    for i in range((len(numero1)-1),0,-1):
+    for i in range((len(numero1)-1), 0, -1):
         if emprestado == 1:
             temp = '0'
             if numero1[i] == '1':
