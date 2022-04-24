@@ -40,15 +40,15 @@ def maior_magnitude_sm(numero1,numero2):
 def adicao_sm(numero1,numero2):
     if(numero1[0] == numero2[0]):
         soma = adicao_bin(numero1,numero2)
-        soma += numero1[0]
+        soma = numero1[0] + soma
     else:
         if maior_magnitude_sm(numero1, numero2):
             soma = subtracao_sm(numero1, numero2)
-            soma += numero1[0]
+            soma = numero1[0] + soma
         else:
             soma = subtracao_sm(numero2, numero1)
-            soma += numero2[0]
-    return soma[::-1]
+            soma = numero2[0] + soma
+    return soma
 
 #Funcao para somar os numeros na base binaria
 def adicao_bin(numero1, numero2): 
@@ -69,7 +69,7 @@ def adicao_bin(numero1, numero2):
                 temp = 1
             else:
                 soma += "1"
-    return soma
+    return soma[::-1]
 
 #Funcao para subtrair os numeros na base binaria com sinal de magnitude
 def subtracao_sm(numero1, numero2): 
@@ -89,7 +89,7 @@ def subtracao_sm(numero1, numero2):
             soma += '1'
             if temp == '0':
                 emprestado = 1
-    return soma
+    return soma[::-1]
 
 #Funcao para inverter o sinal de um numero em SM
 def inverte_sinal_sm(numero):
@@ -101,8 +101,7 @@ def inverte_sinal_sm(numero):
 #Funcao para transformar a base binaria em complemento de dois em base decimal
 def c2_para_decimal(numero):
     if(numero[0] == '0'):
-        return binario_para_decimal(numero[1:32])
-        
+        return binario_para_decimal(numero[1:32])  
     else:
         return binario_para_decimal(inverte_sinal_c2(numero)) * -1    
 
@@ -119,7 +118,7 @@ def inverte_sinal_c2(numero):
 
 def adicao_c2(numero1, numero2):
     soma = adicao_bin('0' + numero1, '0' + numero2)
-    return soma[::-1]
+    return soma
 
 try:
     lista = abrir_arquivo(sys.argv[1])
