@@ -31,7 +31,7 @@ def maior_magnitude_sm(numero1, numero2):
     atual = 1
     while(numero1[atual] == numero2[atual]):
         atual += 1
-    if numero1[atual - 1] == "1":
+    if numero1[atual] == "1":
         return True
     else:
         return False
@@ -73,14 +73,16 @@ def subtracao_sm(numero1, numero2):
     soma  = ""
     temp = '0'
     emprestado = 0
-    for i in range((len(numero1)-1), 0, -1):
+    for atual in range((len(numero1)-1), 0, -1):
         if emprestado == 1:
-            temp = '0'
-            if numero1[i] == '1':
+            if numero1[atual] == '0':
+                temp = '1'
+            else:
                 emprestado = 0
+                temp = '0'     
         else:
-            temp = numero1[i]
-        if temp == numero2[i]:
+            temp = numero1[atual]
+        if temp == numero2[atual]:
             soma += '0'
         else:
             soma += '1'
